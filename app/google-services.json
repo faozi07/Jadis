@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "157821967016",
+    "firebase_url": "https://jadis-b6747.firebaseio.com",
+    "project_id": "jadis-b6747",
+    "storage_bucket": "jadis-b6747.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157821967016:android:068a1cd6fd1495c4",
+        "android_client_info": {
+          "package_name": "cahtegal.com.jadis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157821967016-ru67bbicsheqsd6hh7735j325mdpjqf1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsebowKm2_QZgUwsJBZRnPUZabq4gbbvk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

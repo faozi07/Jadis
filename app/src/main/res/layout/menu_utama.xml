@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/appBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="false">
+
+        <include
+            android:id="@+id/in_lay_toolbar"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        app:headerLayout="@layout/nav_header"
+        tools:openDrawer="start">
+
+        <FrameLayout
+            android:id="@+id/flContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--<ListView
+            app:headerLayout="@layout/nav_header"
+            android:id="@+id/list_sliding_menu"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            android:background="#fff"
+            android:choiceMode="singleChoice"
+            android:divider="@null" />-->
+        <RelativeLayout
+            android:id="@+id/rlSlide"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true">
+            <include
+                android:id="@+id/header"
+                layout="@layout/nav_header"/>
+
+            <ListView
+                android:layout_below="@+id/header"
+                android:layout_above="@+id/appbar"
+                android:id="@+id/list_sliding_menu"
+                android:layout_width="280dp"
+                android:layout_height="match_parent"
+                android:background="#fff"
+                android:choiceMode="singleChoice"
+                android:divider="@null" />
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:layout_alignParentBottom="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Versi 1.0"
+                    android:padding="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:background="#fff"/>
+            </android.support.design.widget.AppBarLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

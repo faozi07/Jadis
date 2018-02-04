@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Jadis</string>
+    <string name="drawer_open">Opened</string>
+    <string name="drawer_closed">Closed</string>
+    <string name="tentang_kami">JADIS (Jadwal Majelis Indonesia) merupakan suatu wadah untuk menampung dan memberi informasi mengenai jadwal kajian dari berbagai majelis taklim atau majelis ilmu di seluruh wilayah Nusantara Indonesia
+        \n\nDengan dilengkapi nama majelis/kajian, tema kajian, penceramah, waktu, tempat, dan informasi lainnya mengenai jadwal majelis taklim atau majelis ilmu
+        \n\nPengguna juga bisa memberi informasi mengenai jadwal majelis di wilayahnya dan akan di verifikasi oleh Admin untuk bisa ter-publikasi di aplikasi JADIS</string>
+</resources>

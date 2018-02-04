@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/layNoData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/logo_jadis"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/logo_jadis"
+            android:backgroundTint="#bbbbbb"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:layout_below="@+id/logo_jadis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:textAlignment="center"
+            android:textColor="#bbbbbb"
+            android:text="Mohon maaf, jadwal majelis yang Anda cari tidak ditemukan"/>
+    </RelativeLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipJadwal"
+        android:layout_above="@id/adView"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvListMajelis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabFilter"
+        app:rippleColor="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_filter"
+        android:tint="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/adView"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"/>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-5730449577374867/3419320121"/>
+
+</RelativeLayout>
