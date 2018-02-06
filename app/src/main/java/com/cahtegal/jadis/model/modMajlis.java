@@ -16,6 +16,7 @@ public class modMajlis {
     private String kategori;
     private String provinsi;
     private String document;
+    private boolean isLoad;
 
 
     public String getImage() {
@@ -104,5 +105,13 @@ public class modMajlis {
 
     public void setDocument(String document) {
         this.document = document;
+    }
+
+    public boolean isLoad() {
+        return isLoad;
+    }
+
+    public void setLoad(boolean load) {
+        isLoad = load;
     }
 }

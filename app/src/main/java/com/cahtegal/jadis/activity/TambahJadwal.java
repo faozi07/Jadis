@@ -39,7 +39,6 @@ import com.cahtegal.jadis.util.ScalingUtilities;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -53,7 +52,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -323,7 +321,7 @@ public class TambahJadwal extends AppCompatActivity {
 
                 photoPath = galleryPhoto.getPath();
                 getCameraPhotoOrientation(TambahJadwal.this, avatarUri, photoPath);
-                decodeFile(photoPath, 1500, 1500);
+                decodeFile(photoPath);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -344,7 +342,7 @@ public class TambahJadwal extends AppCompatActivity {
         }
     }
 
-    public int getCameraPhotoOrientation(Context context, Uri imageUri, String imagePath) {
+    public void getCameraPhotoOrientation(Context context, Uri imageUri, String imagePath) {
         try {
             context.getContentResolver().notifyChange(imageUri, null);
             File imageFile = new File(imagePath);
@@ -375,14 +373,13 @@ public class TambahJadwal extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return rotate;
     }
 
-    private String decodeFile(String path,int DESIREDWIDTH, int DESIREDHEIGHT) {
-        Bitmap scaledBitmap = null;
+    private void decodeFile(String path) {
+        Bitmap scaledBitmap;
         try {
-            Bitmap unscaledBitmap = ScalingUtilities.decodeFile(path, DESIREDWIDTH, DESIREDHEIGHT, ScalingUtilities.ScalingLogic.FIT);
-            scaledBitmap = ScalingUtilities.createScaledBitmap(unscaledBitmap, DESIREDWIDTH, DESIREDHEIGHT, ScalingUtilities.ScalingLogic.FIT);
+            Bitmap unscaledBitmap = ScalingUtilities.decodeFile(path, 1500, 1500, ScalingUtilities.ScalingLogic.FIT);
+            scaledBitmap = ScalingUtilities.createScaledBitmap(unscaledBitmap, 1500, 1500, ScalingUtilities.ScalingLogic.FIT);
 
             Matrix matrix = new Matrix();
             if (rotate == 90) {
@@ -399,10 +396,22 @@ public class TambahJadwal extends AppCompatActivity {
             String extr = Environment.getExternalStorageDirectory().toString();
             File mFolder = new File(extr + "/Jadis");
             if (!mFolder.exists()) {
-                mFolder.mkdir();
+                if (mFolder.mkdir()) {
+                    System.out.print("Folder berhasil dibuat");
+                } else {
+                    Toast.makeText(TambahJadwal.this,"Gagal membuat folder",Toast.LENGTH_LONG).show();
+                }
             } else {
-                mFolder.delete();
-                mFolder.mkdir();
+                if (mFolder.delete()) {
+                    System.out.print("Folder berhasil dihapus");
+                    if (mFolder.mkdir()) {
+                        System.out.print("Folder berhasil dibuat");
+                    } else {
+                        Toast.makeText(TambahJadwal.this,"Gagal membuat folder",Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(TambahJadwal.this,"Gagal hapus folder",Toast.LENGTH_LONG).show();
+                }
             }
 
             String s = dateToString(new Date());
@@ -410,7 +419,7 @@ public class TambahJadwal extends AppCompatActivity {
             File f = new File(mFolder.getAbsolutePath(), s);
 
             strMyImagePath = f.getAbsolutePath();
-            FileOutputStream fos = null;
+            FileOutputStream fos;
             try {
                 fos = new FileOutputStream(f);
                 rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
@@ -430,9 +439,8 @@ public class TambahJadwal extends AppCompatActivity {
         }
 
         if (strMyImagePath == null) {
-            return path;
+            strMyImagePath = path;
         }
-        return strMyImagePath;
     }
 
     private void cekKoneksi() {

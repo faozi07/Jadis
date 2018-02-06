@@ -17,6 +17,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -48,7 +49,7 @@ public class FragmentUtama extends Fragment {
     public static RecyclerView rvMajlis;
     private SwipeRefreshLayout swipJadwal;
     private JadwalAdapter jadwalAdapter;
-    private LinearLayoutManager llm;
+    private GridLayoutManager llm;
     public static boolean isLoading = false, isLastPage = false;
     FirebaseFirestore db;
     ArrayList<modMajlis> arrayMajelis = new ArrayList<>();
@@ -212,7 +213,7 @@ public class FragmentUtama extends Fragment {
             }
         });
 
-        llm = new LinearLayoutManager(getActivity());
+        llm = new GridLayoutManager(getActivity(),2);
         rvMajlis.setLayoutManager(llm);
         rvMajlis.setHasFixedSize(true);
         rvMajlis.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -275,6 +276,8 @@ public class FragmentUtama extends Fragment {
                                             jadwalAdapter = new JadwalAdapter(getActivity(), arrayMajelis);
                                             rvMajlis.setAdapter(jadwalAdapter);
                                             jadwalAdapter.notifyDataSetChanged();
+                                            layNoData.setVisibility(View.GONE);
+                                            rvMajlis.setVisibility(View.VISIBLE);
                                             pLoading.dismiss();
                                         }
 
@@ -288,6 +291,17 @@ public class FragmentUtama extends Fragment {
                         });
             }
         }, 1000);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (pLoading.isShowing()) {
+                    pLoading.dismiss();
+                    layNoData.setVisibility(View.VISIBLE);
+                    rvMajlis.setVisibility(View.GONE);
+                }
+            }
+        },7000);
     }
 
     private void getDataByProvinsi() {
@@ -329,14 +343,14 @@ public class FragmentUtama extends Fragment {
                                                 rvMajlis.setAdapter(jadwalAdapter);
                                                 jadwalAdapter.notifyDataSetChanged();
                                                 layNoData.setVisibility(View.GONE);
-                                                swipJadwal.setVisibility(View.VISIBLE);
+                                                rvMajlis.setVisibility(View.VISIBLE);
                                             } else {
                                                 if (arrayMajelis.size()>0) {
                                                     layNoData.setVisibility(View.GONE);
-                                                    swipJadwal.setVisibility(View.VISIBLE);
+                                                    rvMajlis.setVisibility(View.VISIBLE);
                                                 } else {
                                                     layNoData.setVisibility(View.VISIBLE);
-                                                    swipJadwal.setVisibility(View.GONE);
+                                                    rvMajlis.setVisibility(View.GONE);
                                                 }
                                             }
                                             pLoading.dismiss();
@@ -352,6 +366,16 @@ public class FragmentUtama extends Fragment {
                         });
             }
         }, 1000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (pLoading.isShowing()) {
+                    pLoading.dismiss();
+                    layNoData.setVisibility(View.VISIBLE);
+                    rvMajlis.setVisibility(View.GONE);
+                }
+            }
+        },7000);
     }
 
     private void getDataByKategori() {
@@ -393,14 +417,14 @@ public class FragmentUtama extends Fragment {
                                                 rvMajlis.setAdapter(jadwalAdapter);
                                                 jadwalAdapter.notifyDataSetChanged();
                                                 layNoData.setVisibility(View.GONE);
-                                                swipJadwal.setVisibility(View.VISIBLE);
+                                                rvMajlis.setVisibility(View.VISIBLE);
                                             } else {
                                                 if (arrayMajelis.size() > 0) {
                                                     layNoData.setVisibility(View.GONE);
-                                                    swipJadwal.setVisibility(View.VISIBLE);
+                                                    rvMajlis.setVisibility(View.VISIBLE);
                                                 } else {
                                                     layNoData.setVisibility(View.VISIBLE);
-                                                    swipJadwal.setVisibility(View.GONE);
+                                                    rvMajlis.setVisibility(View.GONE);
                                                 }
                                             }
                                             pLoading.dismiss();
@@ -416,6 +440,16 @@ public class FragmentUtama extends Fragment {
                         });
             }
         }, 1000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (pLoading.isShowing()) {
+                    pLoading.dismiss();
+                    layNoData.setVisibility(View.VISIBLE);
+                    rvMajlis.setVisibility(View.GONE);
+                }
+            }
+        },7000);
     }
 
     private void getDataByKategoriProvinsi() {
@@ -453,19 +487,20 @@ public class FragmentUtama extends Fragment {
                                                 mm.setTanggal(String.valueOf(change.getDocument().getData().get("tanggal")));
                                                 mm.setTema_acara(String.valueOf(change.getDocument().getData().get("tema_acara")));
                                                 mm.setTempat(String.valueOf(change.getDocument().getData().get("tempat")));
+                                                mm.setLoad(false);
                                                 arrayMajelis.add(mm);
                                                 jadwalAdapter = new JadwalAdapter(getActivity(), arrayMajelis);
                                                 rvMajlis.setAdapter(jadwalAdapter);
                                                 jadwalAdapter.notifyDataSetChanged();
                                                 layNoData.setVisibility(View.GONE);
-                                                swipJadwal.setVisibility(View.VISIBLE);
+                                                rvMajlis.setVisibility(View.VISIBLE);
                                             } else {
                                                 if (arrayMajelis.size() > 0) {
                                                     layNoData.setVisibility(View.GONE);
-                                                    swipJadwal.setVisibility(View.VISIBLE);
+                                                    rvMajlis.setVisibility(View.VISIBLE);
                                                 } else {
                                                     layNoData.setVisibility(View.VISIBLE);
-                                                    swipJadwal.setVisibility(View.GONE);
+                                                    rvMajlis.setVisibility(View.GONE);
                                                 }
                                             }
                                             pLoading.dismiss();
@@ -481,6 +516,16 @@ public class FragmentUtama extends Fragment {
                         });
             }
         }, 1000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (pLoading.isShowing()) {
+                    pLoading.dismiss();
+                    layNoData.setVisibility(View.VISIBLE);
+                    rvMajlis.setVisibility(View.GONE);
+                }
+            }
+        },7000);
     }
 
     private void dialogFilter() {

@@ -35,14 +35,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="Majelis" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text=" : " />
 
                     <TextView
@@ -50,7 +50,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="nama majlis" />
                 </LinearLayout>
 
@@ -63,14 +63,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="Tema" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text=" : " />
 
                     <TextView
@@ -78,7 +78,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="nama tema" />
                 </LinearLayout>
 
@@ -91,14 +91,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="Penceramah" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text=" : " />
 
                     <TextView
@@ -106,7 +106,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="penceramah" />
                 </LinearLayout>
                 <LinearLayout
@@ -118,14 +118,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="Kategori" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text=" : " />
 
                     <TextView
@@ -133,7 +133,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="kategori" />
                 </LinearLayout>
 
@@ -146,14 +146,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="Tanggal" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text=" : " />
 
                     <TextView
@@ -161,7 +161,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="tgl majlis" />
                 </LinearLayout>
 
@@ -174,14 +174,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="Waktu" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text=" : " />
 
                     <TextView
@@ -189,7 +189,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="jam" />
                 </LinearLayout>
                 <LinearLayout
@@ -201,14 +201,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="Provinsi" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text=" : " />
 
                     <TextView
@@ -216,7 +216,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="provinsi" />
                 </LinearLayout>
 
@@ -229,14 +229,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="Tempat" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text=" : " />
 
                     <TextView
@@ -244,7 +244,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="nama tempat" />
                 </LinearLayout>
 
@@ -257,14 +257,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="Keterangan" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text=" : " />
 
                     <TextView
@@ -272,7 +272,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorAbu"
                         android:text="keterangan" />
                 </LinearLayout>
             </LinearLayout>
