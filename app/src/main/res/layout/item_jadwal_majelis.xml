@@ -44,9 +44,8 @@
 
             <TextView
                 android:id="@+id/teksInfo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:padding="5dp"
                 android:text="02 - Februari - 2018 (Jakarta Timur)"
                 android:textColor="@color/colorAbu"

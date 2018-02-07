@@ -1,5 +1,6 @@
 package com.cahtegal.jadis.activity;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -22,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.cahtegal.jadis.BuildConfig;
 import com.cahtegal.jadis.R;
@@ -35,7 +37,6 @@ import java.util.List;
 
 public class MenuUtama extends AppCompatActivity {
     private List<ItemSlideMenu> listMenu;
-    private SlideMenuAdapter adapter;
     private ListView listViewSliding;
     private DrawerLayout drawerLayout;
     private RelativeLayout rlSlide;
@@ -72,12 +73,15 @@ public class MenuUtama extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
+    @SuppressLint("SetTextI18n")
     private void setComponent(){
         rlSlide = findViewById(R.id.rlSlide);
         flContent = findViewById(R.id.flContent);
         listViewSliding = findViewById(R.id.list_sliding_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
         listMenu = new ArrayList<>();
+        TextView teksVersi = findViewById(R.id.teksVersi);
+        teksVersi.setText("Versi "+BuildConfig.VERSION_NAME);
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -111,7 +115,7 @@ public class MenuUtama extends AppCompatActivity {
         listMenu.add(new ItemSlideMenu(R.drawable.ic_rate,"Beri Nilai"));
         listMenu.add(new ItemSlideMenu(R.drawable.ic_keluar,"Keluar"));
 
-        adapter = new SlideMenuAdapter(this,listMenu);
+        SlideMenuAdapter adapter = new SlideMenuAdapter(this, listMenu);
         listViewSliding.setAdapter(adapter);
     }
 
@@ -136,7 +140,7 @@ public class MenuUtama extends AppCompatActivity {
                         Intent sendIntent;
                         sendIntent = new Intent(android.content.Intent.ACTION_SEND);
                         sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Info jadwal majelis di seluruh wilayah Nusantara Indonesia, download di \n\nhttps://play.google.com/store/apps/details?id=com.primbon.wetonjawa");
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Info jadwal majelis di seluruh wilayah Nusantara Indonesia, download di \n\nhttps://play.google.com/store/apps/details?id="+BuildConfig.APPLICATION_ID);
                         sendIntent.setType("text/plain");
                         startActivity(Intent.createChooser(sendIntent, "Bagikan info jadwal majelis ini dengan "));
                         break;
