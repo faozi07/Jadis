@@ -2,6 +2,7 @@ package com.cahtegal.jadis.activity;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +21,9 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,6 +36,8 @@ import com.cahtegal.jadis.model.ItemSlideMenu;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MenuUtama extends AppCompatActivity {
@@ -44,6 +49,11 @@ public class MenuUtama extends AppCompatActivity {
     FrameLayout flContent;
     private Toolbar toolbar;
     String refreshedToken = "";
+    ImageView imgCalendar;
+    Calendar myCalendar = Calendar.getInstance();
+    public static String namaHari = "",dates = "";
+    public static int Hari = 0,Bulan = 0, Tahun = 0;
+    public static String tglMajelis = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +89,119 @@ public class MenuUtama extends AppCompatActivity {
         flContent = findViewById(R.id.flContent);
         listViewSliding = findViewById(R.id.list_sliding_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
+        imgCalendar = findViewById(R.id.imgCalendar);
         listMenu = new ArrayList<>();
         TextView teksVersi = findViewById(R.id.teksVersi);
         teksVersi.setText("Versi "+BuildConfig.VERSION_NAME);
+
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDateSet(DatePicker view, int tahun, int bulan,
+                                  int hari) {
+
+                /*mInterstitialAd = new InterstitialAd(MenuUtama.this);
+                mInterstitialAd.setAdUnitId("ca-app-pub-5730449577374867/5331596856");
+                mInterstitialAd.setAdListener(new AdListener() {
+
+                    @Override
+                    public void onAdLoaded() {
+                        super.onAdLoaded();
+                        if(mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show();
+                        }
+                    }
+
+                    @Override
+                    public void onAdOpened() {
+                        super.onAdOpened();
+                    }
+
+                    @Override
+                    public void onAdClosed() {
+                        super.onAdClosed();
+                    }
+
+                    @Override
+                    public void onAdLeftApplication() {
+                        super.onAdLeftApplication();
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(int i) {
+                        super.onAdFailedToLoad(i);
+                    }
+                });
+
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mInterstitialAd.loadAd(adRequest);*/
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, tahun);
+                myCalendar.set(Calendar.MONTH, bulan);
+                myCalendar.set(Calendar.DAY_OF_WEEK, hari);
+                String namaBulan="";
+                Calendar calendar = new GregorianCalendar(tahun, bulan, hari);
+
+                if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+                    namaHari = "Senin";
+                } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
+                    namaHari = "Selasa";
+                } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
+                    namaHari = "Rabu";
+                } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
+                    namaHari = "Kamis";
+                } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
+                    namaHari = "Jum'at";
+                } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+                    namaHari = "Sabtu";
+                } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+                    namaHari = "Minggu";
+                }
+
+                if (bulan == 0) {
+                    namaBulan = "Januari";
+                } else if (bulan == 1) {
+                    namaBulan = "Februari";
+                } else if (bulan == 2) {
+                    namaBulan = "Maret";
+                } else if (bulan == 3) {
+                    namaBulan = "April";
+                } else if (bulan == 4) {
+                    namaBulan = "Mei";
+                } else if (bulan == 5) {
+                    namaBulan = "Juni";
+                } else if (bulan == 6) {
+                    namaBulan = "Juli";
+                } else if (bulan == 7) {
+                    namaBulan = "Agustus";
+                } else if (bulan == 8) {
+                    namaBulan = "September";
+                } else if (bulan == 9) {
+                    namaBulan = "Oktober";
+                } else if (bulan ==10) {
+                    namaBulan = "November";
+                } else if (bulan == 11) {
+                    namaBulan = "Desember";
+                }
+                Hari = hari;
+                Bulan = bulan;
+                Tahun = tahun;
+                tglMajelis = namaHari+", "+hari + " " + namaBulan + " "+ tahun;
+                FragmentUtama.getDataByDate();
+            }
+        };
+
+        imgCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog mDate = new DatePickerDialog(MenuUtama.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                mDate.show();
+            }
+        });
+
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)

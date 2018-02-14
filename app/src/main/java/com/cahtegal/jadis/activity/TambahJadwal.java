@@ -136,7 +136,6 @@ public class TambahJadwal extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        strMyImagePath = "";
     }
 
     @Override
@@ -145,6 +144,7 @@ public class TambahJadwal extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.resume();
         }
+        strMyImagePath = "";
     }
 
     @Override
@@ -161,7 +161,6 @@ public class TambahJadwal extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.destroy();
         }
-        strMyImagePath = "";
     }
 
     private void deklarasi() {
@@ -225,12 +224,12 @@ public class TambahJadwal extends AppCompatActivity {
         btnKirim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (editAlamat.getText().toString().equals("") || editKeterangan.getText().toString().equals("") || editNamaMajlis.getText().toString().equals("")
-                        || editPenceramah.getText().toString().equals("") || editPukul.getText().toString().equals("") || editTemaAcara.getText().toString().equals("")
+                if (editAlamat.getText().toString().equals("") || editNamaMajlis.getText().toString().equals("") || editPenceramah.getText().toString().equals("")
+                        || editPukul.getText().toString().equals("") || editTemaAcara.getText().toString().equals("")
                         || editTglMajlis.getText().toString().equals("") || spinnerProvinsi.getSelectedItem().toString().equals("-- Pilih --")) {
                     Toast.makeText(TambahJadwal.this, "Isi semua data dengan lengkap", Toast.LENGTH_LONG).show();
                 } else {
-                    if (strMyImagePath.equals("")) {
+                    if (imgNoImage.isShown()) {
                         Toast.makeText(TambahJadwal.this,"Anda belum menambahkan gambar",Toast.LENGTH_LONG).show();
                     } else {
                         cekKoneksi();
@@ -399,7 +398,7 @@ public class TambahJadwal extends AppCompatActivity {
                 if (mFolder.mkdir()) {
                     System.out.print("Folder berhasil dibuat");
                 } else {
-                    Toast.makeText(TambahJadwal.this,"Gagal membuat folder",Toast.LENGTH_LONG).show();
+                    System.out.print("Gagal membuat folder");
                 }
             } else {
                 if (mFolder.delete()) {
@@ -407,10 +406,10 @@ public class TambahJadwal extends AppCompatActivity {
                     if (mFolder.mkdir()) {
                         System.out.print("Folder berhasil dibuat");
                     } else {
-                        Toast.makeText(TambahJadwal.this,"Gagal membuat folder",Toast.LENGTH_LONG).show();
+                        System.out.print("Gagal membuat folder");
                     }
                 } else {
-                    Toast.makeText(TambahJadwal.this,"Gagal hapus folder",Toast.LENGTH_LONG).show();
+                    System.out.print("Gagal hapus folder");
                 }
             }
 
@@ -537,7 +536,11 @@ public class TambahJadwal extends AppCompatActivity {
         datamajelis.put("gambar", url);
         datamajelis.put("kategori", spinnerKategori.getSelectedItem().toString());
         datamajelis.put("provinsi", spinnerProvinsi.getSelectedItem().toString());
-        datamajelis.put("keterangan", editKeterangan.getText().toString());
+        if (editKeterangan.getText().toString().equals("")) {
+            datamajelis.put("keterangan", " --- ");
+        } else {
+            datamajelis.put("keterangan", editKeterangan.getText().toString());
+        }
         datamajelis.put("majelis", editNamaMajlis.getText().toString());
         datamajelis.put("penceramah", editPenceramah.getText().toString());
         datamajelis.put("pukul", editPukul.getText().toString());

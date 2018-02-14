@@ -4,6 +4,7 @@ package com.cahtegal.jadis.fragment;
  * Created by regopantes_apps on 31/01/18.
  */
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,7 +20,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.cahtegal.jadis.R;
+import com.cahtegal.jadis.activity.MenuUtama;
 import com.cahtegal.jadis.adapter.JadwalAdapter;
 import com.cahtegal.jadis.model.modMajlis;
 import com.google.android.gms.ads.AdListener;
@@ -50,18 +51,19 @@ public class FragmentUtama extends Fragment {
 
     public static RecyclerView rvMajlis;
     private SwipeRefreshLayout swipJadwal;
-    private JadwalAdapter jadwalAdapter;
+    public static JadwalAdapter jadwalAdapter;
     private GridLayoutManager llm;
     public static boolean isLoading = false, isLastPage = false;
-    FirebaseFirestore db;
-    ArrayList<modMajlis> arrayMajelis = new ArrayList<>();
-    ProgressDialog pLoading;
+    public static FirebaseFirestore db;
+    public static ArrayList<modMajlis> arrayMajelis = new ArrayList<>();
+    public static ProgressDialog pLoading;
     private AdView mAdView;
     FloatingActionButton fabFilter;
     String kategori = "";
     String provinsi = "";
     String bulan = "";
-    RelativeLayout layNoData;
+    public static RelativeLayout layNoData;
+    public static Activity activity;
     String[] arrayProvinsi = {"-- Pilih --", "Bali", "Banten", "Bengkulu", "D.I. Aceh", "D.I. Yogyakarta", "DKI Jakarta", "Gorontalo", "Jambi", "Jawa Barat", "Jawa Tengah",
             "Jawa Timur", "Kalimantan Barat", "Kalimantan Selatan", "Kalimantan Tengah", "Kalimantan Timur", "Kalimantan Utara", "Kepulauan Bangka Belitung",
             "Kepulauan Riau", "Lampung", "Maluku", "Maluku Utara", "Nusa Tenggara Barat", "Nusa Tenggara Timur", "Papua", "Papua Barat", "Riau", "Sulawesi Barat",
@@ -161,6 +163,7 @@ public class FragmentUtama extends Fragment {
             provinsiAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrayProvinsi);
             bulanAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrBulan);
         }
+        activity = getActivity();
     }
 
     private void bulanIni() {
@@ -234,6 +237,7 @@ public class FragmentUtama extends Fragment {
 
     public void action() {
         bulanIni();
+
         fabFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -867,6 +871,82 @@ public class FragmentUtama extends Fragment {
         },7000);
     }
 
+    public static void getDataByDate() {
+        pLoading = new ProgressDialog(activity);
+        pLoading.setTitle("Memuat data ...");
+        pLoading.setMessage("Silahkan tunggu sejenak");
+        pLoading.setCancelable(true);
+        pLoading.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                db.collection("jadis").whereEqualTo("status", "on")
+                        .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable QuerySnapshot querySnapshot,
+                                                @Nullable FirebaseFirestoreException e) {
+                                if (e != null) {
+                                    return;
+                                }
+
+                                if (querySnapshot != null) {
+                                    if (arrayMajelis != null && arrayMajelis.size() > 0) {
+                                        arrayMajelis.clear();
+                                    }
+                                    for (DocumentChange change : querySnapshot.getDocumentChanges()) {
+                                        if (change.getType() == DocumentChange.Type.ADDED) {
+                                            if (String.valueOf(change.getDocument().get("tanggal")).equals(MenuUtama.tglMajelis)) {
+                                                modMajlis mm = new modMajlis();
+                                                mm.setKategori(String.valueOf(change.getDocument().get("kategori")));
+                                                mm.setProvinsi(String.valueOf(change.getDocument().get("provinsi")));
+                                                mm.setImage(String.valueOf(change.getDocument().getData().get("gambar")));
+                                                mm.setKeterangan(String.valueOf(change.getDocument().getData().get("keterangan")));
+                                                mm.setMajelis(String.valueOf(change.getDocument().getData().get("majelis")));
+                                                mm.setPenceramah(String.valueOf(change.getDocument().getData().get("penceramah")));
+                                                mm.setPukul(String.valueOf(change.getDocument().getData().get("pukul")));
+                                                mm.setTanggal(String.valueOf(change.getDocument().getData().get("tanggal")));
+                                                mm.setTema_acara(String.valueOf(change.getDocument().getData().get("tema_acara")));
+                                                mm.setTempat(String.valueOf(change.getDocument().getData().get("tempat")));
+                                                arrayMajelis.add(mm);
+                                                jadwalAdapter = new JadwalAdapter(activity, arrayMajelis);
+                                                rvMajlis.setAdapter(jadwalAdapter);
+                                                jadwalAdapter.notifyDataSetChanged();
+                                                layNoData.setVisibility(View.GONE);
+                                                rvMajlis.setVisibility(View.VISIBLE);
+                                            } else {
+                                                if (arrayMajelis.size()>0) {
+                                                    layNoData.setVisibility(View.GONE);
+                                                    rvMajlis.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    layNoData.setVisibility(View.VISIBLE);
+                                                    rvMajlis.setVisibility(View.GONE);
+                                                }
+                                            }
+                                            pLoading.dismiss();
+                                        }
+
+                                        String source = querySnapshot.getMetadata().isFromCache() ?
+                                                "local cache" : "server";
+                                        Log.d("Tag ", "Data fetched from " + source);
+                                    }
+                                }
+
+                            }
+                        });
+            }
+        }, 1000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (pLoading.isShowing()) {
+                    pLoading.dismiss();
+                    layNoData.setVisibility(View.VISIBLE);
+                    rvMajlis.setVisibility(View.GONE);
+                }
+            }
+        },7000);
+    }
 
     private void dialogFilter() {
         LayoutInflater inflater;

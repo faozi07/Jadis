@@ -12,8 +12,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/adView"
-        android:layout_below="@+id/appBar">
+        android:layout_above="@id/adView">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,12 +74,22 @@
                     android:textColor="#fff"
                     android:textStyle="bold" />
             </RelativeLayout>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Majelis"
-                android:textColor="@color/colorPrimary" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Majelis"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/namaMajelis"
@@ -94,11 +103,22 @@
                 android:textSize="15dp"
                 android:textStyle="italic" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tema"
-                android:textColor="@color/colorPrimary" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tema"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/temaAcara"
@@ -112,11 +132,22 @@
                 android:maxLines="1"
                 android:textStyle="italic" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Penceramah"
-                android:textColor="@color/colorPrimary" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Penceramah"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/namaPenceramah"
@@ -130,11 +161,22 @@
                 android:textSize="14dp"
                 android:textStyle="italic" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Waktu"
-                android:textColor="@color/colorPrimary" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Waktu"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/pukul"
@@ -147,12 +189,22 @@
                 android:textColor="#80000000"
                 android:textSize="15dp"
                 android:textStyle="italic" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tanggal"
-                android:textColor="@color/colorPrimary" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tglMajlis"
@@ -162,14 +214,23 @@
                 android:hint="Pilih Tanggal Majelis"
                 android:textColor="#80000000"
                 android:textSize="15dp"
-                android:editable="false"
                 android:textStyle="italic" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Provinsi"
-                android:textColor="@color/colorPrimary" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Provinsi"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -183,12 +244,22 @@
                     android:layout_height="wrap_content"
                     android:foregroundTint="@color/colorPrimary" />
             </LinearLayout>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kategori"
-                android:textColor="@color/colorPrimary" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kategori"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -202,12 +273,22 @@
                     android:layout_height="wrap_content"
                     android:foregroundTint="@color/colorPrimary" />
             </LinearLayout>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Alamat Lengkap"
-                android:textColor="@color/colorPrimary" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat Lengkap"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/alamat"

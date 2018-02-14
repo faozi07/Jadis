@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -42,24 +44,27 @@
         </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabFilter"
-        app:rippleColor="@color/colorPrimaryDark"
-        app:backgroundTint="@color/colorPrimaryDark"
-        android:src="@drawable/ic_filter"
-        android:tint="#fff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/adView"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/adView"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_filter"
+            tools:ignore="MissingPrefix"
+            fab:fab_label="Filter Majelis"
+            fab:fab_size="normal"
+            fab:fab_colorNormal="@color/colorPrimary"
+            fab:fab_colorPressed="@color/colorPrimary"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="visible"
         ads:adSize="SMART_BANNER"
         ads:adUnitId="ca-app-pub-5730449577374867/3419320121"/>
 
