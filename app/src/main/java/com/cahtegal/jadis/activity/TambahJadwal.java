@@ -135,6 +135,7 @@ public class TambahJadwal extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        strMyImagePath = "";
         finish();
     }
 
@@ -144,7 +145,6 @@ public class TambahJadwal extends AppCompatActivity {
         if (mAdView != null) {
             mAdView.resume();
         }
-        strMyImagePath = "";
     }
 
     @Override
@@ -515,7 +515,7 @@ public class TambahJadwal extends AppCompatActivity {
                 public void onFailure(@NonNull Exception exception) {
                     // Handle unsuccessful uploads
                     pLoading.dismiss();
-                    Toast.makeText(TambahJadwal.this,String.valueOf(exception),Toast.LENGTH_LONG).show();
+//                    Toast.makeText(TambahJadwal.this,String.valueOf(exception),Toast.LENGTH_LONG).show();
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
