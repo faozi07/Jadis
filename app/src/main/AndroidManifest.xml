@@ -70,7 +70,9 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
         <activity android:name=".admin.JadwalNoVerif" />
-        <activity android:name=".admin.VerifDetail"></activity>
+        <activity android:name=".admin.VerifDetail"/>
+        <receiver android:name=".util.AlarmReceiver"
+            android:process=":remote"/>
     </application>
 
 </manifest>

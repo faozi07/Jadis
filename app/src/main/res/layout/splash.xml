@@ -30,13 +30,6 @@
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 app:srcCompat="@drawable/logo_cah_tegal" />
-
-            <ImageView
-                android:id="@+id/imgLogo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                app:srcCompat="@drawable/logo_cah_tegal" />
         </RelativeLayout>
 
     </RelativeLayout>

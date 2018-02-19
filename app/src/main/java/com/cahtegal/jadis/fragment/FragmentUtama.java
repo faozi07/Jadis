@@ -301,6 +301,10 @@ public class FragmentUtama extends Fragment {
                                     return;
                                 }
 
+                                if (arrayMajelis != null && arrayMajelis.size()>0) {
+                                    arrayMajelis.clear();
+                                }
+
                                 if (querySnapshot != null) {
                                     for (DocumentChange change : querySnapshot.getDocumentChanges()) {
                                         if (change.getType() == DocumentChange.Type.ADDED) {

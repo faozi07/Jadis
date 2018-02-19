@@ -2,8 +2,11 @@ package com.cahtegal.jadis.activity;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -33,6 +36,7 @@ import com.cahtegal.jadis.R;
 import com.cahtegal.jadis.adapter.SlideMenuAdapter;
 import com.cahtegal.jadis.fragment.FragmentUtama;
 import com.cahtegal.jadis.model.ItemSlideMenu;
+import com.cahtegal.jadis.util.AlarmReceiver;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
@@ -73,8 +77,19 @@ public class MenuUtama extends AppCompatActivity {
         drawerLayout.closeDrawer(rlSlide);
         itemClickMenu();
         setFragment();
+        setAlarm();
+        setAlarm2();
+        setAlarm3();
         refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d("Tokenfirebase ", "Refreshed token: " + refreshedToken);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setAlarm();
+        setAlarm2();
+        setAlarm3();
     }
 
     @Override
@@ -101,41 +116,6 @@ public class MenuUtama extends AppCompatActivity {
             public void onDateSet(DatePicker view, int tahun, int bulan,
                                   int hari) {
 
-                /*mInterstitialAd = new InterstitialAd(MenuUtama.this);
-                mInterstitialAd.setAdUnitId("ca-app-pub-5730449577374867/5331596856");
-                mInterstitialAd.setAdListener(new AdListener() {
-
-                    @Override
-                    public void onAdLoaded() {
-                        super.onAdLoaded();
-                        if(mInterstitialAd.isLoaded()) {
-                            mInterstitialAd.show();
-                        }
-                    }
-
-                    @Override
-                    public void onAdOpened() {
-                        super.onAdOpened();
-                    }
-
-                    @Override
-                    public void onAdClosed() {
-                        super.onAdClosed();
-                    }
-
-                    @Override
-                    public void onAdLeftApplication() {
-                        super.onAdLeftApplication();
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(int i) {
-                        super.onAdFailedToLoad(i);
-                    }
-                });
-
-                AdRequest adRequest = new AdRequest.Builder().build();
-                mInterstitialAd.loadAd(adRequest);*/
                 // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, tahun);
                 myCalendar.set(Calendar.MONTH, bulan);
@@ -202,6 +182,84 @@ public class MenuUtama extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setAlarm() {
+        Calendar calNow = Calendar.getInstance();
+        Calendar calSet = (Calendar) calNow.clone();
+
+        calSet.set(Calendar.HOUR_OF_DAY, 7);
+        calSet.set(Calendar.MINUTE, 0);
+        calSet.set(Calendar.SECOND, 0);
+        calSet.set(Calendar.MILLISECOND, 0);
+
+        if (calSet.compareTo(calNow) <= 0) {
+            // Today Set time passed, count to tomorrow
+            calSet.add(Calendar.DATE, 1);
+        }
+
+        Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                getBaseContext(), 1, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(),
+                    pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+        }
+    }
+
+    private void setAlarm2() {
+        Calendar calNow = Calendar.getInstance();
+        Calendar calSet = (Calendar) calNow.clone();
+
+        calSet.set(Calendar.HOUR_OF_DAY, 14);
+        calSet.set(Calendar.MINUTE, 0);
+        calSet.set(Calendar.SECOND, 0);
+        calSet.set(Calendar.MILLISECOND, 0);
+
+        if (calSet.compareTo(calNow) <= 0) {
+            // Today Set time passed, count to tomorrow
+            calSet.add(Calendar.DATE, 1);
+        }
+
+        Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                getBaseContext(), 1, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(),
+                    pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+        }
+    }
+
+    private void setAlarm3() {
+        Calendar calNow = Calendar.getInstance();
+        Calendar calSet = (Calendar) calNow.clone();
+
+        calSet.set(Calendar.HOUR_OF_DAY, 20);
+        calSet.set(Calendar.MINUTE, 0);
+        calSet.set(Calendar.SECOND, 0);
+        calSet.set(Calendar.MILLISECOND, 0);
+
+        if (calSet.compareTo(calNow) <= 0) {
+            // Today Set time passed, count to tomorrow
+            calSet.add(Calendar.DATE, 1);
+        }
+
+        Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                getBaseContext(), 1, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(),
+                    pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)

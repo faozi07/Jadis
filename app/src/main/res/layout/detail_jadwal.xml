@@ -25,7 +25,67 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_calendar2"/>
+
+                    <TextView
+                        android:id="@+id/teksTgl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAbu"
+                        android:textStyle="bold"
+                        android:text="tgl majlis" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_time"/>
+                    <TextView
+                        android:id="@+id/teksPukul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAbu"
+                        android:textStyle="bold"
+                        android:text="jam" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lokasi"/>
+                <TextView
+                    android:id="@+id/teksTempat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAbu"
+                    android:text="nama tempat" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/colorPrimary"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -147,61 +207,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.4"
                         android:textColor="@color/colorAbu"
-                        android:text="Tanggal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:textColor="@color/colorAbu"
-                        android:text=" : " />
-
-                    <TextView
-                        android:id="@+id/teksTgl"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/colorAbu"
-                        android:text="tgl majlis" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:textColor="@color/colorAbu"
-                        android:text="Waktu" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:textColor="@color/colorAbu"
-                        android:text=" : " />
-
-                    <TextView
-                        android:id="@+id/teksPukul"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/colorAbu"
-                        android:text="jam" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:textColor="@color/colorAbu"
                         android:text="Provinsi" />
 
                     <TextView
@@ -218,34 +223,6 @@
                         android:layout_weight="1"
                         android:textColor="@color/colorAbu"
                         android:text="provinsi" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:textColor="@color/colorAbu"
-                        android:text="Tempat" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:textColor="@color/colorAbu"
-                        android:text=" : " />
-
-                    <TextView
-                        android:id="@+id/teksTempat"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/colorAbu"
-                        android:text="nama tempat" />
                 </LinearLayout>
 
                 <LinearLayout
