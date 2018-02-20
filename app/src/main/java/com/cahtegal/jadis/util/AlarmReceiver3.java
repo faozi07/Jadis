@@ -16,7 +16,7 @@ import com.cahtegal.jadis.activity.MenuUtama;
 /*
  * Created by faozi on 19/02/18.
  */
-public class AlarmReceiver extends BroadcastReceiver {
+public class AlarmReceiver3 extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {

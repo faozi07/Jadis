@@ -73,6 +73,21 @@
         <activity android:name=".admin.VerifDetail"/>
         <receiver android:name=".util.AlarmReceiver"
             android:process=":remote"/>
+        <receiver android:name=".util.AlarmReceiver2"
+            android:process=":remote"/>
+        <receiver android:name=".util.AlarmReceiver3"
+            android:process=":remote"/>
+
+        <receiver android:name=".util.AlarmReceiverShubuh"
+            android:process=":remote"/>
+        <receiver android:name=".util.AlarmReceiverAshar"
+            android:process=":remote"/>
+        <receiver android:name=".util.AlarmReceiverDhuhur"
+            android:process=":remote"/>
+        <receiver android:name=".util.AlarmReceiverIsya"
+            android:process=":remote"/>
+        <receiver android:name=".util.AlarmReceiverMaghrib"
+            android:process=":remote"/>
     </application>
 
 </manifest>

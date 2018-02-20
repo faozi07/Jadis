@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
 
 import com.cahtegal.jadis.R;
 import com.cahtegal.jadis.activity.MenuUtama;
@@ -16,7 +15,7 @@ import com.cahtegal.jadis.activity.MenuUtama;
 /*
  * Created by faozi on 19/02/18.
  */
-public class AlarmReceiver extends BroadcastReceiver {
+public class AlarmReceiverMaghrib extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -32,8 +31,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Cek jadwal sekarang")
-                .setContentText("Jangan lupa cek jadwal majelis hari ini :)")
+                .setContentTitle("Jangan lupa Shalat Maghrib :)")
+                .setContentText("Ayo Shalat Berjama'ah")
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);

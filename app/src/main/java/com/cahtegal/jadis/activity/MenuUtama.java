@@ -37,6 +37,13 @@ import com.cahtegal.jadis.adapter.SlideMenuAdapter;
 import com.cahtegal.jadis.fragment.FragmentUtama;
 import com.cahtegal.jadis.model.ItemSlideMenu;
 import com.cahtegal.jadis.util.AlarmReceiver;
+import com.cahtegal.jadis.util.AlarmReceiver2;
+import com.cahtegal.jadis.util.AlarmReceiver3;
+import com.cahtegal.jadis.util.AlarmReceiverAshar;
+import com.cahtegal.jadis.util.AlarmReceiverDhuhur;
+import com.cahtegal.jadis.util.AlarmReceiverIsya;
+import com.cahtegal.jadis.util.AlarmReceiverMaghrib;
+import com.cahtegal.jadis.util.AlarmReceiverShubuh;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
@@ -80,6 +87,11 @@ public class MenuUtama extends AppCompatActivity {
         setAlarm();
         setAlarm2();
         setAlarm3();
+        setAlarmAshar();
+        setAlarmDhuhur();
+        setAlarmIsya();
+        setAlarmMaghrib();
+        setAlarmShubuh();
         refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d("Tokenfirebase ", "Refreshed token: " + refreshedToken);
     }
@@ -214,8 +226,8 @@ public class MenuUtama extends AppCompatActivity {
         Calendar calNow = Calendar.getInstance();
         Calendar calSet = (Calendar) calNow.clone();
 
-        calSet.set(Calendar.HOUR_OF_DAY, 14);
-        calSet.set(Calendar.MINUTE, 0);
+        calSet.set(Calendar.HOUR_OF_DAY, 16);
+        calSet.set(Calendar.MINUTE, 20);
         calSet.set(Calendar.SECOND, 0);
         calSet.set(Calendar.MILLISECOND, 0);
 
@@ -224,7 +236,7 @@ public class MenuUtama extends AppCompatActivity {
             calSet.add(Calendar.DATE, 1);
         }
 
-        Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+        Intent intent = new Intent(getBaseContext(), AlarmReceiver2.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 getBaseContext(), 1, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -241,6 +253,110 @@ public class MenuUtama extends AppCompatActivity {
         Calendar calSet = (Calendar) calNow.clone();
 
         calSet.set(Calendar.HOUR_OF_DAY, 20);
+        calSet.set(Calendar.MINUTE, 14);
+        calSet.set(Calendar.SECOND, 0);
+        calSet.set(Calendar.MILLISECOND, 0);
+
+        if (calSet.compareTo(calNow) <= 0) {
+            // Today Set time passed, count to tomorrow
+            calSet.add(Calendar.DATE, 1);
+        }
+
+        Intent intent = new Intent(getBaseContext(), AlarmReceiver3.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                getBaseContext(), 1, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(),
+                    pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+        }
+    }
+
+    private void setAlarmDhuhur() {
+        Calendar calNow = Calendar.getInstance();
+        Calendar calSet = (Calendar) calNow.clone();
+
+        calSet.set(Calendar.HOUR_OF_DAY, 11);
+        calSet.set(Calendar.MINUTE, 45);
+        calSet.set(Calendar.SECOND, 0);
+        calSet.set(Calendar.MILLISECOND, 0);
+
+        if (calSet.compareTo(calNow) <= 0) {
+            // Today Set time passed, count to tomorrow
+            calSet.add(Calendar.DATE, 1);
+        }
+
+        Intent intent = new Intent(getBaseContext(), AlarmReceiverDhuhur.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                getBaseContext(), 1, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(),
+                    pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+        }
+    }
+
+    private void setAlarmAshar() {
+        Calendar calNow = Calendar.getInstance();
+        Calendar calSet = (Calendar) calNow.clone();
+
+        calSet.set(Calendar.HOUR_OF_DAY, 14);
+        calSet.set(Calendar.MINUTE, 50);
+        calSet.set(Calendar.SECOND, 0);
+        calSet.set(Calendar.MILLISECOND, 0);
+
+        if (calSet.compareTo(calNow) <= 0) {
+            // Today Set time passed, count to tomorrow
+            calSet.add(Calendar.DATE, 1);
+        }
+
+        Intent intent = new Intent(getBaseContext(), AlarmReceiverAshar.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                getBaseContext(), 1, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(),
+                    pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+        }
+    }
+
+    private void setAlarmMaghrib() {
+        Calendar calNow = Calendar.getInstance();
+        Calendar calSet = (Calendar) calNow.clone();
+
+        calSet.set(Calendar.HOUR_OF_DAY, 17);
+        calSet.set(Calendar.MINUTE, 45);
+        calSet.set(Calendar.SECOND, 0);
+        calSet.set(Calendar.MILLISECOND, 0);
+
+        if (calSet.compareTo(calNow) <= 0) {
+            // Today Set time passed, count to tomorrow
+            calSet.add(Calendar.DATE, 1);
+        }
+
+        Intent intent = new Intent(getBaseContext(), AlarmReceiverMaghrib.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                getBaseContext(), 1, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(),
+                    pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+        }
+    }
+
+    private void setAlarmIsya() {
+        Calendar calNow = Calendar.getInstance();
+        Calendar calSet = (Calendar) calNow.clone();
+
+        calSet.set(Calendar.HOUR_OF_DAY, 19);
         calSet.set(Calendar.MINUTE, 0);
         calSet.set(Calendar.SECOND, 0);
         calSet.set(Calendar.MILLISECOND, 0);
@@ -250,7 +366,33 @@ public class MenuUtama extends AppCompatActivity {
             calSet.add(Calendar.DATE, 1);
         }
 
-        Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+        Intent intent = new Intent(getBaseContext(), AlarmReceiverIsya.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                getBaseContext(), 1, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(),
+                    pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+        }
+    }
+
+    private void setAlarmShubuh() {
+        Calendar calNow = Calendar.getInstance();
+        Calendar calSet = (Calendar) calNow.clone();
+
+        calSet.set(Calendar.HOUR_OF_DAY, 4);
+        calSet.set(Calendar.MINUTE, 0);
+        calSet.set(Calendar.SECOND, 0);
+        calSet.set(Calendar.MILLISECOND, 0);
+
+        if (calSet.compareTo(calNow) <= 0) {
+            // Today Set time passed, count to tomorrow
+            calSet.add(Calendar.DATE, 1);
+        }
+
+        Intent intent = new Intent(getBaseContext(), AlarmReceiverShubuh.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 getBaseContext(), 1, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
